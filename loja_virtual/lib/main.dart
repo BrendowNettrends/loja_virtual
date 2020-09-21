@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loja_virtual/screens/home_sreen.dart';
 import 'package:loja_virtual/screens/login_screen.dart';
+import 'package:loja_virtual/screens/singup_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home:HomeScreen(),
     );
   }
 }
