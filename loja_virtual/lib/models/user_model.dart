@@ -68,9 +68,9 @@ void singIn({@required String email, @required String pass, @required VoidCallba
 
 }
 
-void recoverPass() {
+void recoverPass(String email) {
 
-
+  _auth.sendPasswordResetEmail(email: email);
 
 }
 
