@@ -117,7 +117,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                                   userData: userData,
                                   pass: _passController.text,
                                   onSuccess: _onSuccess,
-                                  onFail: _onFail
+                                  onFail: _onFail,
                               );
                             }
                           },
