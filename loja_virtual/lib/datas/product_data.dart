@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProductData {
@@ -21,6 +23,15 @@ class ProductData {
     price = snapshot.data["price"] + 0.0;
     images = snapshot.data["images"];
     sizes = snapshot.data["sizes"];
+  }
+
+  Map<String, dynamic> toMao() {
+
+    return {
+      "title": title,
+      "description": description,
+      "price": price,
+    };
   }
 
 }
