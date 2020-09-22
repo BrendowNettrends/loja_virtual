@@ -58,8 +58,19 @@ void recoverPass() {
 
 
 bool isLoggedIn() {
+  return firebaseUser != null;
 
 
+}
+
+void singOut() async {
+
+  await _auth.signOut();
+
+  userData = Map();
+  firebaseUser = null;
+
+  notifyListeners();
 
 }
 
