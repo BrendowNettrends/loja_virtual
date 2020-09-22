@@ -25,7 +25,7 @@ class ProductData {
     sizes = snapshot.data["sizes"];
   }
 
-  Map<String, dynamic> toMao() {
+  Map<String, dynamic> toResumedMap() {
 
     return {
       "title": title,

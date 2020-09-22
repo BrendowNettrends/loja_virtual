@@ -14,12 +14,16 @@ class UserModel extends Model {
 
   bool isLoading = false;
 
+  static UserModel of(BuildContext context) =>
+      ScopedModel.of<UserModel>(context);
+
 
   @override
   void addListener(VoidCallback listener) {
     super.addListener(listener);
 
     _loadCurrentUser();
+
   }
 
   void singUp({ @required Map<String, dynamic> userData, @required String pass, @required VoidCallback onSuccess,
