@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:loja_virtual/datas/cart_product.dart';
 import 'package:loja_virtual/datas/product_data.dart';
+import 'package:loja_virtual/models/cart_modal.dart';
 
 class CartTile extends StatelessWidget {
 
@@ -32,10 +33,8 @@ class CartTile extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget> [
                       Text(
-                        "${cartProduct.productData.title}",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
+                        cartProduct.productData.title,
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
                       ),
                       Text(
                         "Tamanho ${cartProduct.size}",
@@ -57,19 +56,24 @@ class CartTile extends StatelessWidget {
                             icon: Icon(Icons.remove),
                             color: Theme.of(context).primaryColor,
                             onPressed: cartProduct.quantity > 1 ?
-                            () {} : null,
+                            () {
+                              CartModel.of(context).decProduct(cartProduct);
+                            } : null,
                            ),
                             Text(cartProduct.quantity.toString()),
                             IconButton(
                             icon: Icon(Icons.add),
                               color: Theme.of(context).primaryColor,
-
-                              onPressed: () {},
+                              onPressed: () {
+                                CartModel.of(context).incProduct(cartProduct);
+                              },
                             ),
                             FlatButton(
                               child: Text("Remover"),
                               textColor: Colors.grey[500],
-                              onPressed: () {},
+                              onPressed: () {
+                                CartModel.of(context).removeCartItem(cartProduct);
+                              },
                             )
                           ],
                       )
@@ -89,7 +93,6 @@ class CartTile extends StatelessWidget {
             future: Firestore.instance.collection("products").document(cartProduct.category)
                 .collection("items").document(cartProduct.pid).get(),
             builder: (context, snapshot) {
-
               if(snapshot.hasData) {
                 cartProduct.productData = ProductData.fromDocument(snapshot.data);
                 return _buildContent();
@@ -102,7 +105,7 @@ class CartTile extends StatelessWidget {
               }
             },
           ) :
-          _buildContent(),
+          _buildContent()
     );
   }
 }

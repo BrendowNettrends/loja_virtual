@@ -36,7 +36,7 @@ class ProductTile extends StatelessWidget {
                       child: Column(
                         children: <Widget> [
                           Text(
-                            product.title,
+                            "${product.title}",
                             style: TextStyle(
                               fontWeight: FontWeight.w500
                             ),
